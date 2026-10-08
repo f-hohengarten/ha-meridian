@@ -1,0 +1,76 @@
+# Meridian Home — dashboard config (Raw configuration editor or lovelace/config/save)
+title: Zuhause
+views:
+  - title: Home
+    path: home
+    icon: mdi:home-outline
+    type: panel
+    cards:
+      - type: custom:meridian-home-card
+        weather: weather.zuhause
+        calendars:
+          - calendar.gemeinsamer_kalender_2
+          - calendar.fred_2
+          - calendar.clara
+          - calendar.privat
+          - calendar.linn
+        waste_calendar: calendar.mull
+        tasks: todo.aufgaben
+        shopping: todo.einkaufliste
+        vacuum: vacuum.s8_pro_ultra_2
+        door:
+          area: eingang
+          open: button.eingang_tur_offnen
+          bell: event.eingang_klingeln
+        rooms:
+          - area: wohnzimmer
+            name: Wohnzimmer
+            icon: mdi:sofa-outline
+            lights:
+              - light.0x0017880110029a28
+              - light.0x001788011002888a
+              - light.0x001788011002ab0a
+            fan: fan.ventilator
+            camera: camera.gaming_mainstream
+          - area: kuche
+            name: Küche
+            icon: mdi:countertop-outline
+            climate: climate.smart_radiator_thermostat_x_2
+            temperature: sensor.smart_radiator_thermostat_x_temperatur_2
+            humidity: sensor.smart_radiator_thermostat_x_luftfeuchtigkeit_2
+          - area: schlafzimmer
+            name: Schlafzimmer
+            icon: mdi:bed-outline
+            lights:
+              - light.deckenlampe_schlafzimmer
+            climate: climate.schlafzimmer_heizung_schlafzimmer
+            temperature: sensor.schlafzimmer_heizung_schlafzimmer_temperatur
+            humidity: sensor.schlafzimmer_heizung_schlafzimmer_luftfeuchtigkeit
+            camera: camera.kamera_mainstream
+          - area: eingang
+            name: Eingang
+            icon: mdi:door
+        system:
+          - entity: sensor.nas_fh_cpu_auslastung_gesamt
+            name: NAS · CPU
+            icon: mdi:cpu-64-bit
+          - entity: sensor.nas_fh_speichernutzung_real
+            name: NAS · Arbeitsspeicher
+            icon: mdi:memory
+          - entity: sensor.nas_fh_volume_1_volume_nutzung
+            name: NAS · Speicherplatz
+            icon: mdi:harddisk
+          - entity: sensor.backup_last_successful_automatic_backup
+            name: Letztes Backup
+            icon: mdi:backup-restore
+          - entity: sensor.iphone_von_frederic_battery_level
+            name: iPhone
+            icon: mdi:cellphone
+            warn_below: 20
+  - title: Mahlzeiten
+    path: mahlzeiten
+    icon: mdi:food
+    type: panel
+    cards:
+      - type: custom:alh-meal-card
+        title: Mahlzeitenplaner
