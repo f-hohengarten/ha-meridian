@@ -1,6 +1,28 @@
 # Meridian for Home Assistant
 
-A software-like home dashboard and a matching global theme.
+A complete, software-like UI for Home Assistant — plus a matching global theme.
+
+## Meridian app (custom panel) — `dist/meridian-panel.js`
+
+Own navigation (sidebar on desktop, tab bar on mobile), real routes and pages:
+Home · Räume (+ one page per area) · Kalender · Listen (all to-do lists + meal planner) ·
+Geräte (Licht, Klima, Medien, Kameras) · Haushalt · Automationen · System · Einstellungen.
+Everything is discovered from your HA areas, devices and entities. An edit mode lets you
+reorder/hide rooms, hide devices and add any entity or Lovelace card as a widget
+(stored per user in HA). ⌘K opens a command palette. Micro-animations throughout.
+
+```yaml
+# configuration.yaml
+panel_custom:
+  - name: meridian-panel
+    url_path: meridian
+    sidebar_title: Meridian
+    sidebar_icon: mdi:home-variant-outline
+    module_url: /local/meridian/meridian-panel.js?v=0.2.0
+```
+Copy `dist/meridian-panel.js` to `/config/www/meridian/`, add the block above, restart HA.
+
+## Lovelace card — `dist/meridian-home-card.js`
 
 - **`dist/meridian-home-card.js`** – `custom:meridian-home-card`: greeting, live weather,
   quick actions, room cards (warm glow when lights are on, tap for a room sheet with
