@@ -2,7 +2,7 @@
 
 A complete, software-like UI for Home Assistant — plus a matching global theme.
 
-## Meridian app (custom panel) — `dist/meridian-panel.js`
+## Meridian app (custom panel) — `dist/meridian-panel.js` + `dist/meridian-app.js`
 
 Own navigation (sidebar on desktop, tab bar on mobile), real routes and pages:
 Home · Räume (+ one page per area) · Kalender · Listen (all to-do lists + meal planner) ·
@@ -18,9 +18,11 @@ panel_custom:
     url_path: meridian
     sidebar_title: Meridian
     sidebar_icon: mdi:home-variant-outline
-    module_url: /local/meridian/meridian-panel.js?v=0.2.0
+    module_url: /local/meridian/meridian-panel.js
 ```
-Copy `dist/meridian-panel.js` to `/config/www/meridian/`, add the block above, restart HA.
+Copy `dist/meridian-panel.js` and `dist/meridian-app.js` to `/config/www/meridian/`, add the
+block above, restart HA once. `meridian-panel.js` is a tiny loader that always fetches the
+latest `meridian-app.js`, so later updates only need the file replaced and a page reload.
 
 ## Lovelace card — `dist/meridian-home-card.js`
 
