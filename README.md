@@ -18,11 +18,12 @@ panel_custom:
     url_path: meridian
     sidebar_title: Meridian
     sidebar_icon: mdi:home-variant-outline
-    module_url: /local/meridian/meridian-panel.js
+    module_url: /local/meridian/meridian-panel.js?v=0.3
 ```
 Copy `dist/meridian-panel.js` and `dist/meridian-app.js` to `/config/www/meridian/`, add the
 block above, restart HA once. `meridian-panel.js` is a tiny loader that always fetches the
 latest `meridian-app.js`, so later updates only need the file replaced and a page reload.
+HA serves `/local` with a 31-day cache, so bump `?v=` only if the loader itself changes.
 
 ## Lovelace card — `dist/meridian-home-card.js`
 

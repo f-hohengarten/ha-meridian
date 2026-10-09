@@ -12,7 +12,7 @@
  *       module_url: /local/meridian/meridian-panel.js?v=0.2.0
  */
 
-const VERSION = '0.2.1';
+const VERSION = '0.2.2';
 const STORE_KEY = 'meridian';
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
@@ -122,7 +122,14 @@ class MeridianPanel extends HTMLElement {
   }
   set panel(p) { this._panel = p; }
 
-  connectedCallback() { if (this._hass && !this._timers.length) this._startTimers(); }
+  connectedCallback() {
+    // HA may create the element and set props before the module finished loading;
+    // those land as plain own properties that shadow our setters — re-apply them.
+    for (const k of ['narrow', 'route', 'panel', 'hass']) {
+      if (Object.prototype.hasOwnProperty.call(this, k)) { const v = this[k]; delete this[k]; this[k] = v; }
+    }
+    if (this._hass && !this._timers.length) this._startTimers();
+  }
   disconnectedCallback() { this._timers.forEach(clearInterval); this._timers = []; }
 
   // ─── boot / storage ────────────────────────────────────────────────────────
